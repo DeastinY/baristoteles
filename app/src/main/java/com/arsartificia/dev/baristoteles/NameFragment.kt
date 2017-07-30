@@ -7,6 +7,9 @@ import android.view.*
 import kotlinx.android.synthetic.main.text_fragment.view.*
 import android.widget.AutoCompleteTextView
 import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.text_fragment.*
+import android.view.LayoutInflater
+
 
 
 

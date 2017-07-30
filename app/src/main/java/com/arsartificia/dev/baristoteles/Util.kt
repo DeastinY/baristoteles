@@ -1,10 +1,10 @@
 package com.arsartificia.dev.baristoteles
 
+import AnimationUtils
 import android.app.Activity
 import android.app.Fragment
 import android.app.FragmentManager
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -26,7 +26,11 @@ object Util {
 
     fun  initializeFragment(activity: Activity, view: View, fragmentManager: FragmentManager, backIcon: Boolean, hideInput: Boolean) {
         val imageView : ImageView = view.findViewById(R.id.closeDialogImg)
-        imageView.setOnClickListener({ fragmentManager.popBackStack() })
+        imageView.setOnClickListener({
+            fragmentManager.popBackStack()
+            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+        })
         if (backIcon){
             imageView.setImageResource(R.drawable.ic_arrow_back_black_24dp)
         } else {
@@ -52,8 +56,8 @@ object Util {
     fun hideKeyboard(activity: Activity, view:View ) {
         //Hide Keyboard
         view.postDelayed({
-            val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            keyboard.hideSoftInputFromWindow(view.windowToken, 0)
+            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }, 50)
     }
 

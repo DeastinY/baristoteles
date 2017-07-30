@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
+import android.content.Intent
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -91,6 +95,19 @@ class MainActivity : AppCompatActivity() {
         } catch (error: Exception) {
             Snackbar.make(findViewById(R.id.root_layout), error.toString(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+        }
+    }
+
+    override fun onBackPressed() {
+        val count = fragmentManager.backStackEntryCount
+        if (count == 1) {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        } else {
+            fragmentManager.popBackStack()
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
         }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:padding="5dp">
 
@@ -18,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            app:autoSizeTextType="uniform"
             android:lines="2"
             android:ellipsize="end"
             android:id="@+id/coffeeNameTextView" />
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/weightTextView" />
 
@@ -54,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/timeTextView" />
 
@@ -62,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/grindTextView" />
 
@@ -71,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:gravity="center"
         android:lines="3"
         android:ellipsize="end"
         android:id="@+id/noteTextView" />

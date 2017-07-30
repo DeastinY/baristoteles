@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     app:cardBackgroundColor="@color/darkgray"
     app:cardElevation="2dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="0dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
@@ -24,46 +24,36 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <ImageView
                 android:id="@+id/closeDialogImg"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/ic_close_black_24dp"
                 android:tint="#000"
                 android:contentDescription="@string/close_the_dialog" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/infoTextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="50sp" />
+                android:gravity="center"
+                app:autoSizeTextType="uniform"
+                android:textColor="@color/colorPrimaryDark" />
 
         </RelativeLayout>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/infoTextView"
-            android:enabled="false"
-            android:inputType="numberDecimal"
-            android:gravity="center"
-            android:lines="1"
-            android:maxLines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="40sp"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:id="@+id/summaryTextView"
             app:autoSizeTextType="uniform"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:gravity="center|top"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -90,6 +80,7 @@
             android:id="@+id/buttonNext"
             android:background="@color/colorPrimary"
             android:textAlignment="center"
+            android:gravity="center"
             android:text="@string/done_button"
             app:autoSizeTextType="uniform"
             android:textColor="@color/colorPrimaryDark"/>

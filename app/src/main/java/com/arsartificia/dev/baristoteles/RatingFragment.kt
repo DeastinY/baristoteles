@@ -1,7 +1,6 @@
 package com.arsartificia.dev.baristoteles
 
 import android.app.Fragment
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
@@ -40,6 +39,7 @@ class RatingFragment : Fragment() {
                 val ma : MainActivity = activity as MainActivity
                 ma.rating = view.ratingBar.rating
                 ma.addData()
+                Util.hideKeyboard(activity, view)
                 fragmentManager.popBackStack("DataFragment", 0)
             } catch (error: Exception) {
                 Snackbar.make(view, error.toString(), Snackbar.LENGTH_LONG)

@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     app:cardBackgroundColor="@color/darkgray"
     app:cardElevation="2dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="0dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
@@ -23,7 +23,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <ImageView
                 android:id="@+id/closeDialogImg"
                 android:layout_width="30dp"
@@ -33,13 +34,14 @@
                 android:tint="#000"
                 android:contentDescription="@string/close_the_dialog" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/infoTextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="50sp" />
+                app:autoSizeTextType="uniform"/>
 
         </RelativeLayout>
 
@@ -55,7 +57,7 @@
             android:lines="1"
             android:maxLines="1"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="40sp"/>
+            app:autoSizeTextType="uniform"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -215,6 +217,7 @@
             android:id="@+id/buttonNext"
             android:background="@color/colorPrimary"
             android:textAlignment="center"
+            android:gravity="center"
             android:text="@string/done_button"
             app:autoSizeTextType="uniform"
             android:textColor="@color/colorPrimaryDark"/>
