@@ -8,12 +8,8 @@
     app:cardBackgroundColor="@color/darkgray"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="true"
-    app:contentPadding="0dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    android:keepScreenOn="true">
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
