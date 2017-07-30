@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/closeDialogImg"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/ic_close_black_24dp"
                 android:tint="#000"
@@ -41,7 +41,7 @@
 
         </RelativeLayout>
 
-        <android.support.v7.widget.AppCompatEditText
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -77,8 +77,7 @@ class DataFragment : Fragment() {
                         ma.data.removeAt(position)
                         return@OnClickListener
                     }).setNegativeButton("CANCEL", DialogInterface.OnClickListener { _, _->
-                        adapter.notifyItemRemoved(position + 1)
-                        adapter.notifyItemRangeChanged(position, adapter.itemCount)
+                        adapter.notifyItemChanged(position)
                         return@OnClickListener
                     }).show()
                 }

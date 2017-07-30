@@ -60,7 +60,7 @@ class GrindFragment : Fragment() {
             txt = txt.dropLast(1)
         }
         txt = exec(txt)
-        edit_txt.setText(txt)
+        edit_txt.text = txt
     }
 
 }
