@@ -36,12 +36,12 @@ class NameFragment : Fragment() {
             false
         }
 
-        val names = ArrayList<String>()
+        var names = ArrayList<String>()
         ma.data.mapTo(names) { it.name }
+        names = ArrayList(HashSet(names))
         val adapter = ArrayAdapter<String>(activity, android.R.layout.simple_dropdown_item_1line, names)
         val textView = view.mainEditText as AutoCompleteTextView
         textView.setAdapter(adapter)
-
 
         view.buttonNext.setOnClickListener {
             buttonNextOnClick()
