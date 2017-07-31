@@ -7,10 +7,13 @@ import android.support.v4.widget.TextViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.*
 import kotlinx.android.synthetic.main.number_fragment.view.*
 
+
 class TimeFragment : Fragment() {
+
+    var timerThread : Thread? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.number_fragment, container, false)
@@ -37,7 +40,39 @@ class TimeFragment : Fragment() {
         view.buttonOne.setOnClickListener { _ -> changeEditText(view, { it.plus("1") }) }
         view.buttonZero.setOnClickListener { _ -> changeEditText(view, { it.plus("0") }) }
         view.buttonDelete.setOnClickListener { _ -> changeEditText(view, { it.dropLast(1) }) }
-        view.buttonDot.visibility = View.INVISIBLE
+        view.linearLayoutLastRow.removeView(view.buttonDot)
+        // Add Timer Button, Remove Dot Button
+        val buttonTimer = ImageButton(activity)
+        val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT)
+        params.weight = 1f
+        buttonTimer.layoutParams = params
+        buttonTimer.setImageResource(R.drawable.ic_timer_black_24dp)
+        buttonTimer.scaleType = ImageView.ScaleType.FIT_CENTER
+        buttonTimer.background = null
+        buttonTimer.setOnClickListener {
+            if (timerThread != null) {
+                timerThread!!.interrupt()
+                timerThread = null
+            } else {
+                timerThread = object : Thread() {
+
+                    override fun run() {
+                        try {
+                            while (!isInterrupted) {
+                                Thread.sleep(1000)
+                                activity.runOnUiThread(Runnable {
+                                    timerIncrementText(view)
+                                })
+                            }
+                        } catch (e: InterruptedException) {
+                        }
+
+                    }
+                }
+                timerThread!!.start()
+            }
+        }
+        view.linearLayoutLastRow.addView(buttonTimer, 0)
         view.buttonNext.setOnClickListener {
             try {
                 val ma : MainActivity = activity as MainActivity
@@ -45,6 +80,7 @@ class TimeFragment : Fragment() {
                     val time = view.editText.text.toString()
                     ma.time = time
                 }
+                stopThread()
                 Util.transitionFragment(fragmentManager, NoteFragment(), "NoteFragment", view.buttonNext, view)
             } catch (error: NumberFormatException) {
                 Snackbar.make(view, "Please enter a proper number", Snackbar.LENGTH_SHORT)
@@ -56,20 +92,47 @@ class TimeFragment : Fragment() {
         }
     }
 
+    private fun stopThread() {
+        if (timerThread != null) {
+            timerThread!!.interrupt()
+            timerThread = null
+        }
+    }
+
+    private fun clearText(text: String) : String {
+        return text.replace("s","").replace("m","").replace(":","").replace(" ", "")
+    }
+
+    private fun extendText(text: String) : String {
+        var ntext = text
+        when (text.length) {
+            1, 2 -> ntext = text.plus(" s")
+            3 -> ntext = text[0].plus(" m ").plus(text.substring(1, 3)).plus(" s")
+            4 -> ntext = text.substring(0,2).plus(" m : ").plus(text.substring(2, 4)).plus(" s")
+        }
+        return ntext
+    }
+
     private fun changeEditText(dialogView: View, exec: (String) -> String) {
-        val edit_txt = dialogView.editText
-        var txt = edit_txt.text.toString()
-        txt = txt.replace("s","").replace("m","").replace(":","").replace(" ", "")
-        txt = exec(txt)
-        if (txt.length > 4) {
-            txt = txt.dropLast(1)
+        stopThread()
+        var text = clearText(dialogView.editText.text.toString())
+        text = clearText(text)
+        text = exec(text)
+        if (text.length > 4) {
+            text = text.dropLast(1)
         }
-        when (txt.length) {
-            1, 2 -> txt = txt.plus(" s")
-            3 -> txt = txt[0].plus(" m ").plus(txt.substring(1, 3)).plus(" s")
-            4 -> txt = txt.substring(0,2).plus(" m : ").plus(txt.substring(2, 4)).plus(" s")
+        dialogView.editText.text = extendText(text)
+    }
+
+    private fun timerIncrementText(dialogView: View) {
+        var text = clearText(dialogView.editText.text.toString())
+        text = clearText(text)
+        if (text.isEmpty()) { text = "0" }
+        text = text.toInt().inc().toString()
+        if (text.length > 4) {
+            text = text.dropLast(1)
         }
-        edit_txt.setText(txt)
+        dialogView.editText.text = extendText(text)
     }
 
 }
