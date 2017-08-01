@@ -4,6 +4,7 @@ import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.TextViewCompat
+import android.support.v7.app.AppCompatDelegate
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,12 @@ import kotlinx.android.synthetic.main.number_fragment.view.*
 class TimeFragment : Fragment() {
 
     var timerThread : Thread? = null
+    lateinit var buttonTimer : ImageButton
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.number_fragment, container, false)
@@ -40,20 +47,23 @@ class TimeFragment : Fragment() {
         view.buttonOne.setOnClickListener { _ -> changeEditText(view, { it.plus("1") }) }
         view.buttonZero.setOnClickListener { _ -> changeEditText(view, { it.plus("0") }) }
         view.buttonDelete.setOnClickListener { _ -> changeEditText(view, { it.dropLast(1) }) }
+        view.buttonDelete.setImageDrawable(resources.getDrawable(R.drawable.ic_backspace_black_24dp))
+        view.buttonDelete.scaleType = ImageView.ScaleType.FIT_CENTER
+        view.buttonDelete.background = null
         view.linearLayoutLastRow.removeView(view.buttonDot)
         // Add Timer Button, Remove Dot Button
-        val buttonTimer = ImageButton(activity)
+        buttonTimer = ImageButton(activity)
         val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT)
         params.weight = 1f
         buttonTimer.layoutParams = params
-        buttonTimer.setImageResource(R.drawable.ic_timer_black_24dp)
+        buttonTimer.setImageDrawable(resources.getDrawable(R.drawable.ic_timer_black_24dp))
         buttonTimer.scaleType = ImageView.ScaleType.FIT_CENTER
         buttonTimer.background = null
         buttonTimer.setOnClickListener {
             if (timerThread != null) {
-                timerThread!!.interrupt()
-                timerThread = null
+                stopThread()
             } else {
+                buttonTimer.setImageDrawable(resources.getDrawable(R.drawable.ic_timer_off_black_24dp))
                 timerThread = object : Thread() {
 
                     override fun run() {
@@ -92,7 +102,14 @@ class TimeFragment : Fragment() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        stopThread()
+    }
+
     private fun stopThread() {
+        buttonTimer.setImageDrawable(null)
+        buttonTimer.setImageDrawable(resources.getDrawable(R.drawable.ic_timer_black_24dp))
         if (timerThread != null) {
             timerThread!!.interrupt()
             timerThread = null

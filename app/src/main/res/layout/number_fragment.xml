@@ -204,13 +204,12 @@
                 tools:ignore="HardcodedText"
                 app:autoSizeTextType="uniform"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/buttonDelete"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="\u232b"
                 android:textColor="@color/lightblack"
                 tools:ignore="HardcodedText"
                 app:autoSizeTextType="uniform"/>
