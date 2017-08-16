@@ -57,9 +57,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addData() {
-        data.add(Entry(name, grind, time, weight, note, rating))
+        data.add(0, Entry(name, grind, time, weight, note, rating))
         resetTempData()
         dataFragment.adapter.notifyItemInserted(data.size)
+        dataFragment.adapter.notifyItemRangeChanged(0, data.size)
     }
 
     fun resetTempData() {

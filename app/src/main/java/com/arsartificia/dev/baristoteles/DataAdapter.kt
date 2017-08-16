@@ -47,4 +47,8 @@ class DataAdapter
         return values.size
     }
 
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(values.size-position)
+    }
+
 }
