@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.text_fragment.view.*
+import java.io.Serializable
 
 object Util {
     fun registerCircularReveal(context: Context, view: View, arguments: Bundle) {
@@ -61,15 +62,20 @@ object Util {
         }, 50)
     }
 
-    fun transitionFragment(fragmentManager: FragmentManager, newFragment: Fragment, name: String, animationCenter: View, view: View) {
+    fun transitionFragment(fragmentManager: FragmentManager, newFragment: Fragment, name: String, animationCenter: View, view: View, replace: Boolean = false, bundleArg : Serializable = "No Additional Arguments") {
         val fragmentTransaction = fragmentManager.beginTransaction()
         val args = Bundle()
         args.putInt("centerX", (animationCenter.x+animationCenter.width/2).toInt())
         args.putInt("centerY", (animationCenter.y+animationCenter.height/2).toInt())
         args.putInt("width", view.width)
         args.putInt("height", view.height)
+        args.putSerializable("extra", bundleArg)
         newFragment.arguments = args
-        fragmentTransaction.add(R.id.fragment_container, newFragment)
+        if (replace) {
+            fragmentTransaction.replace(R.id.fragment_container, newFragment)
+        } else {
+            fragmentTransaction.add(R.id.fragment_container, newFragment)
+        }
         fragmentTransaction.addToBackStack(name)
         fragmentTransaction.commit()
     }

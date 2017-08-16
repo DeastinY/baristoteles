@@ -44,7 +44,7 @@ class DataFragment : Fragment() {
         recyclerView = view.recycler_view
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = DataAdapter(ma.data)
+        adapter = DataAdapter(ma.data, this)
         recyclerView.adapter = adapter
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -85,5 +85,11 @@ class DataFragment : Fragment() {
         }
         val itemTouchHelper = ItemTouchHelper(simpleCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    fun onLongClick(entry: Entry) {
+        val bundle = Bundle()
+        bundle.putSerializable("entry", entry)
+        Util.transitionFragment(fragmentManager, DataEditFragment(), "DataEditFragment", fab, view, true, entry)
     }
 }

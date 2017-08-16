@@ -8,7 +8,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 
 class DataAdapter
-(private val values: MutableList<Entry>) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+(private val values: MutableList<Entry>, private val dataFragment: DataFragment) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
         var txtName: TextView = layout.findViewById(R.id.coffeeNameTextView)
@@ -41,6 +41,10 @@ class DataAdapter
         holder.txtGrind.text = e.grind
         holder.txtRating.rating = e.rating
         holder.txtNote.text = e.note
+        holder.itemView.setOnLongClickListener(View.OnLongClickListener {
+            dataFragment.onLongClick(e)
+            true
+        })
     }
 
     override fun getItemCount(): Int {

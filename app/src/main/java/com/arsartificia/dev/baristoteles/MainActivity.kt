@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         dataFragment.adapter.notifyItemRangeChanged(0, data.size)
     }
 
+    fun replaceData(old: Entry, new: Entry) {
+        data.set(data.indexOf(old), new)
+    }
+
     fun resetTempData() {
         name = ""
         grind = ""
