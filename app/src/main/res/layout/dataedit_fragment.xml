@@ -26,7 +26,6 @@
             android:imeOptions="actionDone"
             android:lines="1"
             android:singleLine="true"
-            android:text="Coffee Name"
             android:textAlignment="center"
             android:textSize="50dp"
             tools:ignore="SpUsage" />
@@ -97,7 +96,7 @@
             android:background="@color/colorPrimary"
             android:textAlignment="center"
             android:gravity="center"
-            android:text="Save"
+            android:text="@string/save_button"
             app:autoSizeTextType="uniform"
             android:textColor="@color/colorPrimaryDark" />
 

@@ -29,7 +29,7 @@ class NameFragment : Fragment() {
         view.infoTextView.text = getString(R.string.name)
         view.mainEditText.setHorizontallyScrolling(false)
         view.mainEditText.setLines(5)
-        view.mainEditText.setOnEditorActionListener { textView, i, keyEvent ->
+        view.mainEditText.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 buttonNextOnClick()
             }

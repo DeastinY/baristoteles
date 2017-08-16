@@ -8,7 +8,6 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.text_fragment.view.*
@@ -31,7 +30,7 @@ object Util {
             imageView.setOnClickListener({
                 fragmentManager.popBackStack()
                 val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
             })
             if (backIcon) {
                 imageView.setImageResource(R.drawable.ic_arrow_back_black_24dp)

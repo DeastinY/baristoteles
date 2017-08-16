@@ -16,7 +16,7 @@ class WeightFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -85,7 +85,7 @@ class WeightFragment : Fragment() {
         if (txt.isNotEmpty()) {
             txt = txt.plus(" g")
         }
-        edit_txt.setText(txt)
+        edit_txt.text = txt
     }
 
 }

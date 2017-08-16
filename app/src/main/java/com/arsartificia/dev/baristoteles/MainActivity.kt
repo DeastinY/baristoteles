@@ -1,6 +1,7 @@
 package com.arsartificia.dev.baristoteles
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -10,9 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
-import android.content.Intent
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +37,18 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         loadData()
+
+        val PREFS_NAME = "BaristotelesPreferences"
+        val PREFS_INVERT = "upgrade_invert"
+        val settings = getSharedPreferences(PREFS_NAME, 0)
+        if (settings.getBoolean(PREFS_INVERT, true)) {
+            //the app is being launched for first time, do something
+            data.reverse()
+            Snackbar.make(root_layout, resources.getText(R.string.upgrade_invert), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean(PREFS_INVERT, false).apply()
+        }
     }
 
     override fun onStop() {
@@ -65,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     fun replaceData(old: Entry, new: Entry) {
         val idx = data.indexOf(old)
-        data.set(idx, new)
+        data[idx] = new
         dataFragment.adapter.notifyItemChanged(idx)
     }
 

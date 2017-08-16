@@ -19,11 +19,6 @@ class DataAdapter
         var txtNote: TextView = layout.findViewById(R.id.noteTextView)
     }
 
-    fun add(position: Int, item: Entry) {
-        values.add(position, item)
-        notifyItemInserted(position)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): DataAdapter.ViewHolder {
         val inflater = LayoutInflater.from(
@@ -41,7 +36,7 @@ class DataAdapter
         holder.txtGrind.text = e.grind
         holder.txtRating.rating = e.rating
         holder.txtNote.text = e.note
-        holder.itemView.setOnLongClickListener(View.OnLongClickListener { v ->
+        holder.itemView.setOnLongClickListener({ v ->
             dataFragment.onLongClick(e, v)
             true
         })

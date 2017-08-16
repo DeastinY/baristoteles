@@ -10,4 +10,6 @@
     <string name="rating">Rating:</string>
     <string name="time">Time:</string>
     <string name="weight">Weight:</string>
+    <string name="save_button">Save</string>
+    <string name="upgrade_invert">Thanks for the upgrade ! The order of entries is now inverted.</string>
 </resources>

@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.dataedit_fragment.*
 
-class DataEditFragment() : Fragment() {
+class DataEditFragment : Fragment() {
 
     lateinit var entry: Entry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         entry = arguments.getSerializable("extra") as Entry
     }
 
