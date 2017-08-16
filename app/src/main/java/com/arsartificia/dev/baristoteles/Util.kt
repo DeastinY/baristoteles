@@ -26,16 +26,21 @@ object Util {
     }
 
     fun  initializeFragment(activity: Activity, view: View, fragmentManager: FragmentManager, backIcon: Boolean, hideInput: Boolean) {
-        val imageView : ImageView = view.findViewById(R.id.closeDialogImg)
-        imageView.setOnClickListener({
-            fragmentManager.popBackStack()
-            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
-        })
-        if (backIcon){
-            imageView.setImageResource(R.drawable.ic_arrow_back_black_24dp)
-        } else {
-            imageView.setImageResource(R.drawable.ic_close_black_24dp)
+        try {
+            val imageView: ImageView = view.findViewById(R.id.closeDialogImg)
+            imageView.setOnClickListener({
+                fragmentManager.popBackStack()
+                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+            })
+            if (backIcon) {
+                imageView.setImageResource(R.drawable.ic_arrow_back_black_24dp)
+            } else {
+                imageView.setImageResource(R.drawable.ic_close_black_24dp)
+            }
+        } catch ( e: IllegalStateException )
+        {
+            // If the layout does not provide a closeDialogImg we don't care
         }
 
         if (hideInput) {
@@ -62,7 +67,7 @@ object Util {
         }, 50)
     }
 
-    fun transitionFragment(fragmentManager: FragmentManager, newFragment: Fragment, name: String, animationCenter: View, view: View, replace: Boolean = false, bundleArg : Serializable = "No Additional Arguments") {
+    fun transitionFragment(fragmentManager: FragmentManager, newFragment: Fragment, name: String, animationCenter: View, view: View, bundleArg : Serializable = "No Additional Arguments") {
         val fragmentTransaction = fragmentManager.beginTransaction()
         val args = Bundle()
         args.putInt("centerX", (animationCenter.x+animationCenter.width/2).toInt())
@@ -71,11 +76,7 @@ object Util {
         args.putInt("height", view.height)
         args.putSerializable("extra", bundleArg)
         newFragment.arguments = args
-        if (replace) {
-            fragmentTransaction.replace(R.id.fragment_container, newFragment)
-        } else {
-            fragmentTransaction.add(R.id.fragment_container, newFragment)
-        }
+        fragmentTransaction.add(R.id.fragment_container, newFragment)
         fragmentTransaction.addToBackStack(name)
         fragmentTransaction.commit()
     }

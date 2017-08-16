@@ -64,7 +64,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun replaceData(old: Entry, new: Entry) {
-        data.set(data.indexOf(old), new)
+        val idx = data.indexOf(old)
+        data.set(idx, new)
+        dataFragment.adapter.notifyItemChanged(idx)
     }
 
     fun resetTempData() {

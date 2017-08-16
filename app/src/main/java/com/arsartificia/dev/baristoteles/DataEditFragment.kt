@@ -2,6 +2,7 @@ package com.arsartificia.dev.baristoteles
 
 import android.app.Fragment
 import android.os.Bundle
+import android.support.v7.app.AppCompatDelegate
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +14,20 @@ class DataEditFragment() : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         entry = arguments.getSerializable("extra") as Entry
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater!!.inflate(R.layout.dataedit_fragment, container, false)
+        val view = inflater!!.inflate(R.layout.dataedit_fragment, container, false)
+        Util.registerCircularReveal(activity, view, arguments)
+        return view
     }
 
     override fun onStart() {
         super.onStart()
+
+        Util.initializeFragment(activity, view, fragmentManager, false, true)
 
         nameEditText.setText(entry.name)
         ratingBar.rating = entry.rating

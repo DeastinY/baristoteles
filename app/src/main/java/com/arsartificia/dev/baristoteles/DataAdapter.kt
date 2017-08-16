@@ -41,8 +41,8 @@ class DataAdapter
         holder.txtGrind.text = e.grind
         holder.txtRating.rating = e.rating
         holder.txtNote.text = e.note
-        holder.itemView.setOnLongClickListener(View.OnLongClickListener {
-            dataFragment.onLongClick(e)
+        holder.itemView.setOnLongClickListener(View.OnLongClickListener { v ->
+            dataFragment.onLongClick(e, v)
             true
         })
     }

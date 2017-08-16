@@ -87,9 +87,9 @@ class DataFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    fun onLongClick(entry: Entry) {
+    fun onLongClick(entry: Entry, clickView: View) {
         val bundle = Bundle()
         bundle.putSerializable("entry", entry)
-        Util.transitionFragment(fragmentManager, DataEditFragment(), "DataEditFragment", fab, view, true, entry)
+        Util.transitionFragment(fragmentManager, DataEditFragment(), "DataEditFragment", clickView, view, entry)
     }
 }

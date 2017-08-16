@@ -1,93 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.AppCompatAutoCompleteTextView
-        android:id="@+id/nameEditText"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/lightblack"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="true"
+    android:layout_gravity="center_horizontal"
+    android:keepScreenOn="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/colorAccent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:imeOptions="actionDone"
-        android:lines="1"
-        android:singleLine="true"
-        android:text="Coffee Name"
-        android:textAlignment="center"
-        android:textSize="50dp"
-        tools:ignore="SpUsage" />
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:mirrorForRtl="true"
-        android:numStars="5"
-        android:rating="2.5"
-        android:theme="@style/RatingBar"
-        tools:ignore="UnusedAttribute" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/weightTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+        <android.support.v7.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center"
+            android:imeOptions="actionDone"
+            android:lines="1"
+            android:singleLine="true"
+            android:text="Coffee Name"
             android:textAlignment="center"
-            android:textStyle="bold" />
+            android:textSize="50dp"
+            tools:ignore="SpUsage" />
 
-        <EditText
-            android:id="@+id/timeTextView"
+        <RatingBar
+            android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:mirrorForRtl="true"
+            android:numStars="5"
+            android:rating="2.5"
+            android:theme="@style/RatingBar"
+            tools:ignore="UnusedAttribute" />
 
-        <EditText
-            android:id="@+id/grindTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/weightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/grindTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatAutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:id="@+id/noteEditText"
+            android:lines="5"
+            android:textSize="50dp"
+            tools:ignore="SpUsage"
+            android:imeOptions="actionDone"
             android:textAlignment="center"
-            android:textStyle="bold" />
+            android:gravity="top|center"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:id="@+id/buttonSave"
+            android:background="@color/colorPrimary"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:text="Save"
+            app:autoSizeTextType="uniform"
+            android:textColor="@color/colorPrimaryDark" />
+
     </LinearLayout>
-
-    <android.support.v7.widget.AppCompatAutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:id="@+id/noteEditText"
-        android:lines="5"
-        android:textSize="50dp"
-        tools:ignore="SpUsage"
-        android:imeOptions="actionDone"
-        android:textAlignment="center"
-        android:gravity="top|center"/>
-
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
-        android:id="@+id/buttonSave"
-        android:background="@color/colorPrimary"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:text="Save"
-        app:autoSizeTextType="uniform"
-        android:textColor="@color/colorPrimaryDark" />
-
-</LinearLayout>
+</android.support.v7.widget.CardView>
