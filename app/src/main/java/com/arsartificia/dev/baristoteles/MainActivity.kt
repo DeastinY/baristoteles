@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
     fun addData() {
         data.add(0, Entry(name, grind, time, weight, note, rating))
         resetTempData()
-        dataFragment.adapter.notifyItemInserted(data.size)
-        dataFragment.adapter.notifyItemRangeChanged(0, data.size)
+        dataFragment.adapter.notifyItemInserted(0)
+        dataFragment.recyclerView.scrollToPosition(0)
     }
 
     fun replaceData(old: Entry, new: Entry) {
