@@ -1,12 +1,14 @@
 package com.arsartificia.dev.baristoteles
 
+import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.TextViewCompat
-import android.widget.Button
-import android.app.*
 import android.support.v7.app.AppCompatDelegate
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.number_fragment.view.*
 
@@ -59,7 +61,7 @@ class GrindFragment : Fragment() {
                 if (view.editText.text.isNotEmpty()) {
                     ma.grind = view.editText.text.toString()
                 }
-                Util.transitionFragment(fragmentManager, WeightFragment(), "WeightFragment", view.buttonNext, view)
+                Util.nextFragment(this, ma.settings, fragmentManager, view.buttonNext, view)
             } catch (error: NumberFormatException) {
                 Snackbar.make(view, "Please enter a proper number", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show()

@@ -1,14 +1,15 @@
 package com.arsartificia.dev.baristoteles
 
+import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.app.*
-import android.view.*
-import kotlinx.android.synthetic.main.text_fragment.view.*
-import android.widget.AutoCompleteTextView
-import android.widget.ArrayAdapter
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import kotlinx.android.synthetic.main.text_fragment.view.*
 
 
 class NameFragment : Fragment() {
@@ -55,7 +56,7 @@ class NameFragment : Fragment() {
             }
             val ma : MainActivity = activity as MainActivity
             ma.name = view.mainEditText.text.toString()
-            Util.transitionFragment(fragmentManager, GrindFragment(), "GrindFragment", view.buttonNext, view)
+            Util.nextFragment(this, ma.settings, fragmentManager, view.buttonNext, view)
         } catch (error: IllegalArgumentException) {
             Snackbar.make(view, "Please Enter a name", Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()

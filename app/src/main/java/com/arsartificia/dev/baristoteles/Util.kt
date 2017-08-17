@@ -66,6 +66,48 @@ object Util {
         }, 50)
     }
 
+    fun nextFragment(current: Fragment, settings: Settings, fragmentManager: FragmentManager, animationCenter: View, view: View) {
+        if (current is NameFragment) {
+            if (settings.grind) {
+                transitionFragment(fragmentManager, GrindFragment(), "Grind", animationCenter, view)
+            } else if (settings.weight) {
+                transitionFragment(fragmentManager, WeightFragment(), "Weight", animationCenter, view)
+            } else if (settings.time) {
+                transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else if (current is GrindFragment) {
+            if (settings.weight) {
+                transitionFragment(fragmentManager, WeightFragment(), "Weight", animationCenter, view)
+            } else if (settings.time) {
+                transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else if (current is WeightFragment) {
+            if (settings.time) {
+                transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else if (current is TimeFragment) {
+            if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else {
+            transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+        }
+    }
+
     fun transitionFragment(fragmentManager: FragmentManager, newFragment: Fragment, name: String, animationCenter: View, view: View, bundleArg : Serializable = "No Additional Arguments") {
         val fragmentTransaction = fragmentManager.beginTransaction()
         val args = Bundle()

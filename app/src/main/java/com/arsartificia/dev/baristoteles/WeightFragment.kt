@@ -61,7 +61,7 @@ class WeightFragment : Fragment() {
                 if (view.editText.text.isNotEmpty()) {
                     ma.weight = view.editText.text.toString()
                 }
-                Util.transitionFragment(fragmentManager, TimeFragment(), "TimeFragment", view.buttonNext, view)
+                Util.nextFragment(this, ma.settings, fragmentManager, view.buttonNext, view)
             } catch (error: NumberFormatException) {
                 Snackbar.make(view, "Please enter a proper number", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show()

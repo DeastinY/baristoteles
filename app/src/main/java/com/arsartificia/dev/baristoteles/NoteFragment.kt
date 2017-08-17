@@ -32,7 +32,7 @@ class NoteFragment : Fragment() {
             try {
                 val ma : MainActivity = activity as MainActivity
                 ma.note = view.mainEditText.text.toString()
-                Util.transitionFragment(fragmentManager, RatingFragment(), "RatingFragment", view.buttonNext, view)
+                Util.nextFragment(this, ma.settings, fragmentManager, view.buttonNext, view)
             } catch (error: Exception) {
                 Snackbar.make(view, error.toString(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()

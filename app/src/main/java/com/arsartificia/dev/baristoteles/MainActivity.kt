@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,8 +24,16 @@ class MainActivity : AppCompatActivity() {
     var note: String = ""
     var rating: Float = 0.0f
     val filename = "baristoteles.data"
-    lateinit var dataFragment: DataFragment
     var data = ArrayList<Entry>()
+    lateinit var dataFragment: DataFragment
+    lateinit var settings: Settings
+    val PREFS_NAME = "BaristotelesPreferences"
+    val PREFS_INVERT = "upgrade_invert"
+    val PREFS_STEP_TIME = "step_time"
+    val PREFS_STEP_WEIGHT = "step_weight"
+    val PREFS_STEP_GRIND = "step_grind"
+    val PREFS_STEP_NOTES = "step_notes"
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,18 +48,40 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         loadData()
+        loadSettings()
+    }
 
-        val PREFS_NAME = "BaristotelesPreferences"
-        val PREFS_INVERT = "upgrade_invert"
-        val settings = getSharedPreferences(PREFS_NAME, 0)
-        if (settings.getBoolean(PREFS_INVERT, true)) {
+    fun checkCreateSettings() {
+        val s = getSharedPreferences(PREFS_NAME, 0)
+        if (s.getBoolean(PREFS_INVERT, true)) {
             //the app is being launched for first time, do something
             data.reverse()
             Snackbar.make(root_layout, resources.getText(R.string.upgrade_invert), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             // record the fact that the app has been started at least once
-            settings.edit().putBoolean(PREFS_INVERT, false).apply()
+            s.edit().putBoolean(PREFS_INVERT, false).apply()
         }
+        if (s.getBoolean(PREFS_STEP_TIME, true)) {
+            s.edit().putBoolean(PREFS_STEP_TIME, true).apply()
+        }
+        if (s.getBoolean(PREFS_STEP_WEIGHT, true)) {
+            s.edit().putBoolean(PREFS_STEP_WEIGHT, true).apply()
+        }
+        if (s.getBoolean(PREFS_STEP_GRIND, true)) {
+            s.edit().putBoolean(PREFS_STEP_GRIND, true).apply()
+        }
+        if (s.getBoolean(PREFS_STEP_NOTES, true)) {
+            s.edit().putBoolean(PREFS_STEP_NOTES, true).apply()
+        }
+    }
+
+    fun loadSettings() {
+        val s = getSharedPreferences(PREFS_NAME, 0)
+        settings = Settings(
+                s.getBoolean(PREFS_STEP_TIME, true),
+                s.getBoolean(PREFS_STEP_WEIGHT, true),
+                s.getBoolean(PREFS_STEP_GRIND, true),
+                s.getBoolean(PREFS_STEP_NOTES, true))
     }
 
     override fun onStop() {
@@ -56,14 +89,21 @@ class MainActivity : AppCompatActivity() {
         writeData()
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return false
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_settings -> {
+                // TODO put your code here to respond to the button tap
+                Util.transitionFragment(fragmentManager, SettingsFragment(), "SettingsFragment", root_layout, root_layout)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     fun addData() {
@@ -104,6 +144,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun writeData() {
+        val s = getSharedPreferences(PREFS_NAME, 0)
+        s.edit().putBoolean(PREFS_STEP_TIME, settings.time)
+                .putBoolean(PREFS_STEP_WEIGHT, settings.weight)
+                .putBoolean(PREFS_STEP_GRIND, settings.grind)
+                .putBoolean(PREFS_STEP_NOTES, settings.notes).apply()
         try {
             val fos = openFileOutput(filename, Context.MODE_PRIVATE)
             val oos = ObjectOutputStream(fos)
