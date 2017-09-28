@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="fontSize">60dp</dimen>
+    <dimen name="detailsFontSize">50dp</dimen>
+</resources>

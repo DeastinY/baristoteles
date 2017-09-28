@@ -48,7 +48,7 @@
             android:id="@+id/mainEditText"
             android:singleLine="true"
             android:lines="1"
-            android:textSize="50dp"
+            android:textSize="@dimen/fontSize"
             tools:ignore="SpUsage"
             android:imeOptions="actionDone"
             android:textAlignment="center"

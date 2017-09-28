@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.text_fragment.view.*
 
+
+
 class NoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -26,8 +28,8 @@ class NoteFragment : Fragment() {
         view.mainEditText.setBackgroundColor(Color.WHITE)
         view.mainEditText.setHorizontallyScrolling(true)
         view.mainEditText.setLines(5)
+        view.mainEditText.textSize = view.mainEditText.textSize*0.4f
         view.mainEditText.setSingleLine(false)
-        view.mainEditText.textSize = view.mainEditText.textSize/3
         view.buttonNext.setOnClickListener {
             try {
                 val ma : MainActivity = activity as MainActivity

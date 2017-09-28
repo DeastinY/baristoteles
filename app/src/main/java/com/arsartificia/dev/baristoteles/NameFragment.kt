@@ -12,6 +12,8 @@ import android.widget.AutoCompleteTextView
 import kotlinx.android.synthetic.main.text_fragment.view.*
 
 
+
+
 class NameFragment : Fragment() {
     lateinit var ma: MainActivity
 

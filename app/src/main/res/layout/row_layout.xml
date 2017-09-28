@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/rowHeight"
         android:orientation="horizontal"
         android:padding="5dp">
 
@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:autoSizeTextType="uniform"
+            android:autoSizeTextType="uniform"
             android:lines="2"
             android:ellipsize="end"
             android:id="@+id/coffeeNameTextView" />
@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:textSize="@dimen/rowDetails"
             android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/weightTextView" />
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:textSize="@dimen/rowDetails"
             android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/timeTextView" />
@@ -65,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
+            android:textSize="@dimen/rowDetails"
             android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/grindTextView" />
@@ -77,6 +80,7 @@
         android:textAlignment="center"
         android:gravity="center"
         android:lines="3"
+        android:textSize="@dimen/rowNotes"
         android:ellipsize="end"
         android:id="@+id/noteTextView" />
 

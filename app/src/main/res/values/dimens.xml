@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">20dp</dimen>
+    <dimen name="rowHeight">60dp</dimen>
+    <dimen name="fontSize">50dp</dimen>
+    <dimen name="detailsFontSize">20dp</dimen>
+    <dimen name="rowDetails">20dp</dimen>
+    <dimen name="rowNotes">15dp</dimen>
 </resources>
