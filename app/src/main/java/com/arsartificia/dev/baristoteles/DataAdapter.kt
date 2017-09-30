@@ -13,8 +13,10 @@ class DataAdapter
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
         var txtName: TextView = layout.findViewById(R.id.coffeeNameTextView)
         var txtWeight: TextView = layout.findViewById(R.id.weightTextView)
+        var txtWeightout: TextView = layout.findViewById(R.id.weightOutTextView)
         var txtGrind: TextView = layout.findViewById(R.id.grindTextView)
         var txtTime: TextView = layout.findViewById(R.id.timeTextView)
+        var txtTemperature: TextView = layout.findViewById(R.id.temperatureTextView)
         var txtRating: RatingBar = layout.findViewById(R.id.ratingBar)
         var txtNote: TextView = layout.findViewById(R.id.noteTextView)
     }
@@ -32,8 +34,10 @@ class DataAdapter
         val e: Entry = values[position]
         holder.txtName.text = e.name
         holder.txtWeight.text = e.weight
+        holder.txtWeightout.text = e.outWeight
         holder.txtTime.text = e.time
         holder.txtGrind.text = e.grind
+        holder.txtTemperature.text = e.temperature
         holder.txtRating.rating = e.rating
         holder.txtNote.text = e.note
         holder.itemView.setOnLongClickListener({ v ->

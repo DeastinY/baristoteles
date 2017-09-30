@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
     var grind: String = ""
     var time: String = ""
     var weight: String = ""
+    var weightOut: String = ""
     var note: String = ""
+    var temperature: String = ""
     var rating: Float = 0.0f
     val filename = "baristoteles.data"
     var data = ArrayList<Entry>()
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     val PREFS_STEP_WEIGHT = "step_weight"
     val PREFS_STEP_GRIND = "step_grind"
     val PREFS_STEP_NOTES = "step_notes"
+    val PREFS_STEP_OUTWEIGHT = "step_weight_out"
+    val PREFS_STEP_TEMPERATURE = "step_temperature"
 
 
 
@@ -67,8 +71,14 @@ class MainActivity : AppCompatActivity() {
         if (s.getBoolean(PREFS_STEP_WEIGHT, true)) {
             s.edit().putBoolean(PREFS_STEP_WEIGHT, true).apply()
         }
+        if (s.getBoolean(PREFS_STEP_OUTWEIGHT, true)) {
+            s.edit().putBoolean(PREFS_STEP_OUTWEIGHT, true).apply()
+        }
         if (s.getBoolean(PREFS_STEP_GRIND, true)) {
             s.edit().putBoolean(PREFS_STEP_GRIND, true).apply()
+        }
+        if (s.getBoolean(PREFS_STEP_TEMPERATURE, true)) {
+            s.edit().putBoolean(PREFS_STEP_TEMPERATURE, true).apply()
         }
         if (s.getBoolean(PREFS_STEP_NOTES, true)) {
             s.edit().putBoolean(PREFS_STEP_NOTES, true).apply()
@@ -81,7 +91,9 @@ class MainActivity : AppCompatActivity() {
                 s.getBoolean(PREFS_STEP_TIME, true),
                 s.getBoolean(PREFS_STEP_WEIGHT, true),
                 s.getBoolean(PREFS_STEP_GRIND, true),
-                s.getBoolean(PREFS_STEP_NOTES, true))
+                s.getBoolean(PREFS_STEP_NOTES, true),
+                s.getBoolean(PREFS_STEP_TEMPERATURE, true),
+                s.getBoolean(PREFS_STEP_OUTWEIGHT, true))
     }
 
     override fun onStop() {
@@ -107,7 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addData() {
-        data.add(0, Entry(name, grind, time, weight, note, rating))
+        data.add(0, Entry(name, grind, time, weight, weightOut, note, rating, temperature))
         resetTempData()
         dataFragment.adapter.notifyItemInserted(0)
         dataFragment.recyclerView.scrollToPosition(0)
@@ -125,6 +137,8 @@ class MainActivity : AppCompatActivity() {
         time = ""
         weight = ""
         note = ""
+        temperature = ""
+        weightOut = ""
         rating = 0.0f
     }
 

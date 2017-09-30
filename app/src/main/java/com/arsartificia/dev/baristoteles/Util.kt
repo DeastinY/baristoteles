@@ -72,8 +72,12 @@ object Util {
                 transitionFragment(fragmentManager, GrindFragment(), "Grind", animationCenter, view)
             } else if (settings.weight) {
                 transitionFragment(fragmentManager, WeightFragment(), "Weight", animationCenter, view)
+            } else if (settings.temperature) {
+                transitionFragment(fragmentManager, TemperatureFragment(), "Temperature", animationCenter, view)
             } else if (settings.time) {
                 transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.outWeight) {
+                transitionFragment(fragmentManager, WeightOutFragment(), "WeightOut", animationCenter, view)
             } else if (settings.notes) {
                 transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
             } else {
@@ -82,22 +86,48 @@ object Util {
         } else if (current is GrindFragment) {
             if (settings.weight) {
                 transitionFragment(fragmentManager, WeightFragment(), "Weight", animationCenter, view)
+            } else if (settings.temperature) {
+                transitionFragment(fragmentManager, TemperatureFragment(), "Temperature", animationCenter, view)
             } else if (settings.time) {
                 transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.outWeight) {
+                transitionFragment(fragmentManager, WeightOutFragment(), "WeightOut", animationCenter, view)
             } else if (settings.notes) {
                 transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
             } else {
                 transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
             }
         } else if (current is WeightFragment) {
+            if (settings.temperature) {
+                transitionFragment(fragmentManager, TemperatureFragment(), "Temperature", animationCenter, view)
+            } else if (settings.time) {
+                transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.outWeight) {
+                transitionFragment(fragmentManager, WeightOutFragment(), "WeightOut", animationCenter, view)
+            } else if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else if (current is TemperatureFragment) {
             if (settings.time) {
                 transitionFragment(fragmentManager, TimeFragment(), "Time", animationCenter, view)
+            } else if (settings.outWeight) {
+                transitionFragment(fragmentManager, WeightOutFragment(), "WeightOut", animationCenter, view)
             } else if (settings.notes) {
                 transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
             } else {
                 transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
             }
         } else if (current is TimeFragment) {
+            if (settings.outWeight) {
+                transitionFragment(fragmentManager, WeightOutFragment(), "WeightOut", animationCenter, view)
+            } else if (settings.notes) {
+                transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
+            } else {
+                transitionFragment(fragmentManager, RatingFragment(), "Rating", animationCenter, view)
+            }
+        } else if (current is WeightOutFragment) {
             if (settings.notes) {
                 transitionFragment(fragmentManager, NoteFragment(), "Notes", animationCenter, view)
             } else {

@@ -38,13 +38,13 @@
                 android:textAlignment="center"/>
 
             <Switch
-                android:id="@+id/timeSwitch"
+                android:id="@+id/grindSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:theme="@style/SettingsSwitch"
-                android:text="@string/time" />
+                android:text="@string/grind" />
 
             <Switch
                 android:id="@+id/weightSwitch"
@@ -56,13 +56,31 @@
                 android:text="@string/weight" />
 
             <Switch
-                android:id="@+id/grindSwitch"
+                android:id="@+id/temperatureSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:theme="@style/SettingsSwitch"
-                android:text="@string/grind" />
+                android:text="@string/temperature" />
+
+            <Switch
+                android:id="@+id/timeSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:theme="@style/SettingsSwitch"
+                android:text="@string/time" />
+
+            <Switch
+                android:id="@+id/outweightSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:theme="@style/SettingsSwitch"
+                android:text="@string/weight_out" />
 
             <Switch
                 android:id="@+id/notesSwitch"

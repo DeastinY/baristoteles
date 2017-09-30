@@ -15,25 +15,25 @@
         android:padding="5dp">
 
         <android.support.v7.widget.AppCompatTextView
-            android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:id="@+id/coffeeNameTextView"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:autoSizeTextType="uniform"
-            android:lines="2"
             android:ellipsize="end"
-            android:id="@+id/coffeeNameTextView" />
+            android:lines="2" />
 
         <RatingBar
-            android:layout_margin="5dp"
+            android:id="@+id/ratingBar"
+            style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
-            android:numStars="5"
-            android:focusable="false"
             android:layout_gravity="center_vertical"
-            android:id="@+id/ratingBar"
-            android:theme="@style/RatingBar"/>
+            android:layout_margin="5dp"
+            android:focusable="false"
+            android:numStars="5"
+            android:theme="@style/RatingBar" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,6 +60,16 @@
             android:textSize="@dimen/rowDetails"
             android:gravity="center"
             android:textStyle="bold"
+            android:id="@+id/weightOutTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="@dimen/rowDetails"
+            android:gravity="center"
+            android:textStyle="bold"
             android:id="@+id/timeTextView" />
 
         <TextView
@@ -71,6 +81,16 @@
             android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/grindTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="@dimen/rowDetails"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/temperatureTextView" />
 
     </LinearLayout>
 

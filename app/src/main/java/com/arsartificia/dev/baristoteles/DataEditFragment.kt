@@ -32,9 +32,11 @@ class DataEditFragment : Fragment() {
         nameEditText.setText(entry.name)
         ratingBar.rating = entry.rating
         weightTextView.setText(entry.weight)
+        weightOutTextView.setText(entry.outWeight)
         timeTextView.setText(entry.time)
         grindTextView.setText(entry.grind)
         noteEditText.setText(entry.note)
+        temperatureTextView.setText(entry.temperature)
         buttonSave.setOnClickListener {
                 val ma : MainActivity = activity as MainActivity
                 ma.replaceData(entry, Entry(
@@ -42,8 +44,10 @@ class DataEditFragment : Fragment() {
                         grindTextView.text.toString(),
                         timeTextView.text.toString(),
                         weightTextView.text.toString(),
+                        weightOutTextView.text.toString(),
                         noteEditText.text.toString(),
-                        ratingBar.rating
+                        ratingBar.rating,
+                        temperatureTextView.text.toString()
                 ))
                 Util.hideKeyboard(activity, view)
                 fragmentManager.popBackStack("DataFragment", 0)

@@ -20,12 +20,16 @@ class SettingsFragment : Fragment() {
         super.onStart()
 
         ma = activity as MainActivity
-        timeSwitch.isChecked = ma.settings.time
-        timeSwitch.setOnClickListener { ma.settings.time = timeSwitch.isChecked }
-        weightSwitch.isChecked = ma.settings.weight
-        weightSwitch.setOnClickListener{ ma.settings.weight = weightSwitch.isChecked }
         grindSwitch.isChecked = ma.settings.grind
         grindSwitch.setOnClickListener{ ma.settings.grind = grindSwitch.isChecked }
+        weightSwitch.isChecked = ma.settings.weight
+        weightSwitch.setOnClickListener{ ma.settings.weight = weightSwitch.isChecked }
+        temperatureSwitch.isChecked = ma.settings.temperature
+        temperatureSwitch.setOnClickListener{ ma.settings.temperature = temperatureSwitch.isChecked }
+        timeSwitch.isChecked = ma.settings.time
+        timeSwitch.setOnClickListener { ma.settings.time = timeSwitch.isChecked }
+        outweightSwitch.isChecked = ma.settings.outWeight
+        outweightSwitch.setOnClickListener{ ma.settings.outWeight = grindSwitch.isChecked }
         notesSwitch.isChecked = ma.settings.notes
         notesSwitch.setOnClickListener{ ma.settings.notes = notesSwitch.isChecked }
     }

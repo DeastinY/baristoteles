@@ -10,6 +10,8 @@
     <string name="notes">Notizen:</string>
     <string name="rating">Bewertung:</string>
     <string name="time">Zeit:</string>
+    <string name="weight_out">Getränkemenge:</string>
+    <string name="temperature">Temperature</string>
     <string name="weight">Gewicht:</string>
     <string name="save_button">Speichern</string>
     <string name="upgrade_invert">Die Reihenfolge der Einträge ist jetzt invertiert !</string>

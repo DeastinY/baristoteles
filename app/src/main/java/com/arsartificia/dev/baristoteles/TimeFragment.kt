@@ -94,7 +94,7 @@ class TimeFragment : Fragment() {
                     ma.time = time
                 }
                 stopThread()
-                Util.transitionFragment(fragmentManager, NoteFragment(), "NoteFragment", view.buttonNext, view)
+                Util.nextFragment(this, ma.settings, fragmentManager, view.buttonNext, view)
             } catch (error: NumberFormatException) {
                 Snackbar.make(view, "Please enter a proper number", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show()
